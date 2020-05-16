@@ -1,0 +1,78 @@
+<!-- test -->
+<table class="table" id="sqab-table" *ngIf="tableDetails.length && tableDetails.length > 0">
+  <thead>
+    <tr>
+      <th>Sl No</th>
+      <th>Paid Bill Name</th>
+      <th>Paid Bill Date
+        <i class="fas fa-filter dropdown-trigger" [ngClass]="{'iconDisabled': tableDetails.length == 0, 'icon_clr': tableDetails.length && tableDetails.length > 0, 'icon_blk' : (!ss.selectedMonth || ss.selectedMonth == 'Clear')}"
+          title="{{tableDetails.length == 0 ? 'Not allowed' : 'Filter On Month'}}" data-target='dropdown1'></i>
+        <ul id='dropdown1' class='dropdown-content' [ngClass]="{'onAllBill': ss.filterType == 'All'}" style="top: 341px !important; ">
+          <li *ngFor="let month of monthArray">
+            <a (click)="filterOnMonth(month)" [ngClass]="{'menuActive': month == ss.selectedMonth}">{{month}}</a>
+          </li>
+          <!-- <li>
+            <a href="#!">two</a>
+          </li> -->
+        </ul>
+      </th>
+      <th *ngIf="ss.filterType == 'All'">Paid Bill Type</th>
+      <th>Paid Bill Amount</th>
+      <th>Paid Bill Description</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tDetails of tableDetails; let i=index">
+      <td>{{i+1}}</td>
+      <td>{{tDetails.billname}}</td>
+      <td>{{ss.formatDate(tDetails.billDate) | date}}</td>
+      <td *ngIf="ss.filterType == 'All'">{{tDetails.billtype}}</td>
+      <td>{{tDetails.billamount | currency : 'INR'}}</td>
+      <td>{{tDetails.billdesc ? tDetails.billdesc : '-'}}</td>
+      <td>
+        <span>
+          <i class="far fa-edit pr-12" title="edit" (click)="edit(tDetails)"></i>
+        </span>
+        <span class="btn modal-trigger" href="#modal1">
+          <i class="far fa-trash-alt" title="delete" (click)="passValue(tDetails)"></i>
+          <!-- <a class="btn modal-trigger" href="#modal1"></a> -->
+        </span>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+<!-- <div class="sqab_flt_btn"> (click)="delete(tDetails)"
+    <a class="btn-floating btn-large waves-effect waves-light btn_pink"><i class="material-icons">add</i></a>
+</div> -->
+<div class="empty_container" *ngIf="tableDetails.length == 0">
+  <div class="vertical_center">
+    <i class="fas fa-bolt fs-28 pt-12 icon_clr" *ngIf="ss.filterType == 'Electricity'"></i>
+    <i class="fas fa-hand-holding-water fs-28 pt-12 icon_clr" *ngIf="ss.filterType == 'Water'"></i>
+    <i class="fas fa-gas-pump fs-28 pt-12 icon_clr" *ngIf="ss.filterType == 'Gas'"></i>
+    <i class="fas fa-satellite-dish fs-28 pt-12 icon_clr" *ngIf="ss.filterType == 'DTH'"></i>
+    <i class="fas fa-broadcast-tower fs-28 pt-12 icon_clr" *ngIf="ss.filterType == 'Phone/Internet'"></i>
+    <i class="fas fa-shopping-basket fs-28 pt-12 icon_clr" *ngIf="ss.filterType == 'Food/Grocery'"></i>
+    <i class="fas fa-file-invoice-dollar fs-28 pt-12 icon_clr" *ngIf="ss.filterType == 'Loan/Insurance'"></i>
+    <i class="fas fa-shopping-cart fs-28 pt-12 icon_clr" *ngIf="ss.filterType == 'Online Purchase'"></i>
+    <i class="fas fa-comment-dollar fs-28 pt-12 icon_clr" *ngIf="ss.filterType == 'Money Transfer'"></i>
+    <i class="fas fa-money-check-alt fs-28 pt-12 icon_clr" *ngIf="ss.filterType == 'Others'"></i>
+    <i class="fas fa-check-double fs-28 pt-12 icon_clr" *ngIf="ss.filterType == 'All'"></i>
+    <div class="pr_txt">You don't have a {{ss.filterType}} Bills </div>
+    <div class="sn_txt">Click 'Create' to add a {{ss.filterType == 'All' ? '': ss.filterType}} Bill </div>
+  </div>
+</div>
+
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h5 class="mdl-head">Delete Bill</h5>
+    <p class="mdl-body">Once deleted, no further actions can be taken on it.
+        Do you want to proceed?</p>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-close waves-effect waves-green btn-flat">No</a>
+    <a class="modal-close waves-effect waves-green btn-flat icon_clr" (click)="delete(holder)">Yes</a>
+  </div>
+</div>
+<!-- test -->

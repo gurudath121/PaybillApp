@@ -1,0 +1,62 @@
+<div class="wrapper">
+    <div class="top_navbar">
+      <div class="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="top_menu">
+        <div class="logo wow tada"  data-wow-duration="1s">PBill</div>
+        <ul>
+          <li class="wow tada"  data-wow-duration="1s">
+            <a href="#">
+              <li class="fas fa-search"></li>
+            </a>
+          </li>
+          <li class="wow tada" data-wow-duration="1s">
+            <a href="#">
+              <li class="fas fa-bell"></li>
+            </a>
+          </li>
+          <li class="wow tada" data-wow-duration="1s">
+            <a href="#">
+              <li class="fas fa-user"></li>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="sidebar">
+      <ul>
+        <li >
+          <a routerLink="dashboard"  routerLinkActive="active" >
+            <span class="icon">
+                <i class="far fa-chart-bar" aria-hidden="true"></i>
+            </span>
+            <span class="title">Dashboard</span>
+          </a>
+        </li>
+        <li >
+          <a routerLink="pay-bill/list" routerLinkActive="active" (click)="setType('Electricity')">
+            <span class="icon">
+              <i class="fas fa-tasks" aria-hidden="true"></i>
+            </span>
+            <span class="title">View Bill Details</span>
+          </a>
+        </li>
+        <li >
+          <a routerLink="pay-bill/create" routerLinkActive="active" >
+            <span class="icon">
+              <i class="fas fa-credit-card" aria-hidden="true"></i>
+            </span>
+            <span class="title">Pay Bill On Category</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="main_container">
+      <div class="item">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,32 @@
+<app-spinner [loader]="loading"></app-spinner>
+<div class="c_container">
+  <div class="row">
+    <div class="col-8">
+      <div class="sqab_bl_style">
+        <div class="sqab_hText">Expense Chart For Year {{currentDate}}</div>
+        <!-- <span class="sqab_tColor fs-12">Dashboard</span> -->
+      </div>
+      <fusioncharts width="1000" height="400" type="column2d" dataFormat="json" [dataSource]="dataSource">
+      </fusioncharts>
+    </div>
+    <div class="col-4">
+      <div class="sqab_bl_style">
+        <div class="sqab_hText">Rated Months For Year {{currentDate}}
+            <span class="fr fs-14 fw-600">{{expensePerYear | currency: 'INR'}}</span>
+        </div>
+        <!-- <span class="sqab_tColor fs-12">Dashboard</span> -->
+        
+      </div>
+      <div>
+        <ul>
+          <li *ngFor="let rate of ratedMonth; let i=index" class="ratePad">
+          <div class="cp" title="{{rate.expensive ? 'Expensive Month' : 'Normal Expense'}}" (click)="navList(rate.label)">
+           <span class="fs-14 fw-600" [ngClass]="{'icon_clr':rate.expensive, 'grayC':!rate.expensive}"> <i class="fas fa-level-up-alt" *ngIf="i == 0"></i> <i class="fas fa-level-down-alt" *ngIf="i != 0"></i> {{rate.label}}  </span>  
+           <span class="fr fs-14 fw-600" [ngClass]="{'icon_clr':rate.expensive, 'grayC':!rate.expensive}"> {{rate.value | currency:'INR':true}}</span> 
+          </div> 
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

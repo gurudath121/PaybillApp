@@ -1,0 +1,167 @@
+<app-spinner [loader]="loading"></app-spinner>
+<div class="c_container">
+  <div class="sqab_bl_style">
+    <div class="sqab_hText">Paybill Lists</div>
+    <span class="sqab_tColor fs-12">Dashboard</span>
+    <img alt="no image" class="bc-icon pl-4" style="height: 9px ; width: 9px;" src="assets/images/Breadcrumb Chevron.svg">
+    <span class="pl-4 sqab_tColor fs-12">Paybill Lists</span>
+  </div>
+  <!-- <div class="subTitle" id="sqab-info">
+    <span class="subt-txt wow flash" data-wow-delay="0.2s" data-wow-iteration="3">You could view paid bills list based on category listed below. </span>
+  </div> -->
+  <br/>
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s1" (click)="setFilterType('Electricity')">
+          <a href="#test1" [ngClass]="{'active': ss.filterType == 'Electricity'}">
+            <i class="fas fa-bolt fs-28 pt-12 icon_clr" title="Electricity"></i>
+          </a>
+        </li>
+        <li class="tab col s1" (click)="setFilterType('Water')">
+          <a class="waves-effect" href="#test2" [ngClass]="{'active': ss.filterType == 'Water'}">
+            <i class="fas fa-hand-holding-water fs-28 pt-12 icon_clr" title="Water"></i>
+          </a>
+        </li>
+        <li class="tab col s1" (click)="setFilterType('Gas')">
+          <a href="#test3" [ngClass]="{'active': ss.filterType == 'Gas'}">
+            <i class="fas fa-gas-pump fs-28 pt-12 icon_clr" title="Gas"></i>
+          </a>
+        </li>
+        <li class="tab col s1" (click)="setFilterType('DTH')">
+          <a href="#test4" [ngClass]="{'active': ss.filterType == 'DTH'}">
+            <i class="fas fa-satellite-dish fs-28 pt-12 icon_clr" title="DTH"></i>
+          </a>
+        </li>
+        <li class="tab col s1" (click)="setFilterType('Phone/Internet')">
+          <a href="#test5" [ngClass]="{'active': ss.filterType == 'Phone/Internet'}">
+            <i class="fas fa-broadcast-tower fs-28 pt-12 icon_clr" title="Phone/Internet"></i>
+          </a>
+        </li>
+        <li class="tab col s1" (click)="setFilterType('Food/Grocery')">
+          <a href="#test6" [ngClass]="{'active': ss.filterType == 'Food/Grocery'}">
+            <i class="fas fa-shopping-basket fs-28 pt-12 icon_clr" title="Food/Grocery"></i>
+          </a>
+        </li>
+        <li class="tab col s1" (click)="setFilterType('Loan/Insurance')">
+          <a href="#test7" [ngClass]="{'active': ss.filterType == 'Loan/Insurance'}">
+            <i class="fas fa-file-invoice-dollar fs-28 pt-12 icon_clr" title="Loan/Insurance"></i>
+          </a>
+        </li>
+        <li class="tab col s1" (click)="setFilterType('Online Purchase')">
+          <a href="#test8" [ngClass]="{'active': ss.filterType == 'Online Purchase'}">
+            <i class="fas fa-shopping-cart fs-28 pt-12 icon_clr" title="Online Purchase"></i>
+          </a>
+        </li>
+        <li class="tab col s1" (click)="setFilterType('Money Transfer')">
+          <a href="#test9" [ngClass]="{'active': ss.filterType == 'Money Transfer'}">
+            <i class="fas fa-comment-dollar fs-28 pt-12 icon_clr" title="Money Transfer"></i>
+          </a>
+        </li>
+        <li class="tab col s1" (click)="setFilterType('Others')">
+          <a href="#test10" [ngClass]="{'active': ss.filterType == 'Others'}">
+            <i class="fas fa-money-check-alt fs-28 pt-12 icon_clr" title="Others"></i>
+          </a>
+        </li>
+        <li class="tab col s1" (click)="setFilterType('All')">
+          <a href="#test11" [ngClass]="{'active': ss.filterType == 'All'}">
+            <!-- <i class="fas fa-filtert fs-28 pt-12 icon_clr" title="All Bills"></i> -->
+            <i class="fas fa-check-double fs-28 pt-12 icon_clr" title="All Bills"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div id="test1" class="col s12" *ngIf="ss.filterType == 'Electricity'">
+      <div class="sqab_bl_style sub_hStyle rm_lr_margin rm_btm_margin pl-0">
+        <div class="sqab_hText">Electricity Bills
+          <span class="subt-txt wow flash fr fs-14">{{ss.selectedMonth ? ss.selectedMonth + ' s' : ''}} Total Expense: {{ss.totalExpensesOnType | currency : 'INR'}}</span>
+          <span class="subt-txt wow flash fr fs-14" id="sqab-info" data-wow-delay="0.2s" data-wow-iteration="3">You could view paid bills list, based on category listed above. </span>
+        </div>
+      </div>
+      <app-common-table [tableDetails]="billsOnType" (onDelete)="deleteBills($event)"></app-common-table>
+    </div>
+    <div id="test2" class="col s12" *ngIf="ss.filterType == 'Water'">
+      <div class="sqab_bl_style sub_hStyle rm_lr_margin rm_btm_margin pl-0">
+        <div class="sqab_hText">Water Bills
+          <span class="subt-txt wow flash fr fs-14">{{ss.selectedMonth ? ss.selectedMonth + ' s' : ''}} Total Expense: {{ss.totalExpensesOnType | currency : 'INR'}}</span>
+        </div>
+      </div>
+      <app-common-table [tableDetails]="billsOnType" (onDelete)="deleteBills($event)"></app-common-table>
+    </div>
+    <div id="test3" class="col s12" *ngIf="ss.filterType == 'Gas'">
+      <div class="sqab_bl_style sub_hStyle rm_lr_margin rm_btm_margin pl-0">
+        <div class="sqab_hText">Gas Bills
+          <span class="subt-txt wow flash fr fs-14">{{ss.selectedMonth ? ss.selectedMonth + ' s' : ''}} Total Expense: {{ss.totalExpensesOnType | currency : 'INR'}}</span>
+        </div>
+      </div>
+      <app-common-table [tableDetails]="billsOnType" (onDelete)="deleteBills($event)"></app-common-table>
+    </div>
+    <div id="test4" class="col s12" *ngIf="ss.filterType == 'DTH'">
+      <div class="sqab_bl_style sub_hStyle rm_lr_margin rm_btm_margin pl-0">
+        <div class="sqab_hText">DTH Bills
+          <span class="subt-txt wow flash fr fs-14">{{ss.selectedMonth ? ss.selectedMonth + ' s' : ''}} Total Expense: {{ss.totalExpensesOnType | currency : 'INR'}}</span>
+        </div>
+      </div>
+      <app-common-table [tableDetails]="billsOnType" (onDelete)="deleteBills($event)"></app-common-table>
+    </div>
+    <div id="test5" class="col s12" *ngIf="ss.filterType == 'Phone/Internet'">
+      <div class="sqab_bl_style sub_hStyle rm_lr_margin rm_btm_margin pl-0">
+        <div class="sqab_hText">Phone/Internet Bills
+          <span class="subt-txt wow flash fr fs-14">{{ss.selectedMonth ? ss.selectedMonth + ' s' : ''}} Total Expense: {{ss.totalExpensesOnType | currency : 'INR'}}</span>
+        </div>
+      </div>
+      <app-common-table [tableDetails]="billsOnType" (onDelete)="deleteBills($event)"></app-common-table>
+    </div>
+    <div id="test6" class="col s12" *ngIf="ss.filterType == 'Food/Grocery'">
+      <div class="sqab_bl_style sub_hStyle rm_lr_margin rm_btm_margin pl-0">
+        <div class="sqab_hText">Food/Grocery Bills
+          <span class="subt-txt wow flash fr fs-14">{{ss.selectedMonth ? ss.selectedMonth + ' s' : ''}} Total Expense: {{ss.totalExpensesOnType | currency : 'INR'}}</span>
+        </div>
+      </div>
+      <app-common-table [tableDetails]="billsOnType" (onDelete)="deleteBills($event)"></app-common-table>
+    </div>
+    <div id="test7" class="col s12" *ngIf="ss.filterType == 'Loan/Insurance'">
+      <div class="sqab_bl_style sub_hStyle rm_lr_margin rm_btm_margin pl-0">
+        <div class="sqab_hText">Loan/Insurance/Mutual Funds Bills
+          <span class="subt-txt wow flash fr fs-14">{{ss.selectedMonth ? ss.selectedMonth + ' s' : ''}} Total Expense: {{ss.totalExpensesOnType | currency : 'INR'}}</span>
+        </div>
+      </div>
+      <app-common-table [tableDetails]="billsOnType" (onDelete)="deleteBills($event)"></app-common-table>
+    </div>
+    <div id="test8" class="col s12" *ngIf="ss.filterType == 'Online Purchase'">
+      <div class="sqab_bl_style sub_hStyle rm_lr_margin rm_btm_margin pl-0">
+        <div class="sqab_hText">Online Purchase Bills
+          <span class="subt-txt wow flash fr fs-14">{{ss.selectedMonth ? ss.selectedMonth + ' s' : ''}} Total Expense: {{ss.totalExpensesOnType | currency : 'INR'}}</span>
+        </div>
+      </div>
+      <app-common-table [tableDetails]="billsOnType" (onDelete)="deleteBills($event)"></app-common-table>
+    </div>
+    <div id="test9" class="col s12" *ngIf="ss.filterType == 'Money Transfer'">
+      <div class="sqab_bl_style sub_hStyle rm_lr_margin rm_btm_margin pl-0">
+        <div class="sqab_hText">Money Transfer Bills
+          <span class="subt-txt wow flash fr fs-14">{{ss.selectedMonth ? ss.selectedMonth + ' s' : ''}} Total Expense: {{ss.totalExpensesOnType | currency : 'INR'}}</span>
+        </div>
+      </div>
+      <app-common-table [tableDetails]="billsOnType" (onDelete)="deleteBills($event)"></app-common-table>
+    </div>
+    <div id="test10" class="col s12" *ngIf="ss.filterType == 'Others'">
+      <div class="sqab_bl_style sub_hStyle rm_lr_margin rm_btm_margin pl-0">
+        <div class="sqab_hText">Other Pay Bills
+          <span class="subt-txt wow flash fr fs-14">{{ss.selectedMonth ? ss.selectedMonth + ' s' : ''}} Total Expense: {{ss.totalExpensesOnType | currency : 'INR'}}</span>
+        </div>
+      </div>
+      <app-common-table [tableDetails]="billsOnType" (onDelete)="deleteBills($event)"></app-common-table>
+    </div>
+    <div id="test11" class="col s12" *ngIf="ss.filterType == 'All'">
+      <div class="sqab_bl_style sub_hStyle rm_lr_margin rm_btm_margin pl-0">
+        <div class="sqab_hText">All Pay Bills
+          <span class="subt-txt wow flash fr fs-14">{{ss.selectedMonth ? ss.selectedMonth + ' s' : ''}} Total Expense: {{ss.totalExpensesOnType | currency : 'INR'}}</span>
+          <!-- <span class="subt-txt fr fs-14">Create</span> -->
+        </div>
+      </div>
+      <app-common-table [tableDetails]="billsOnType" (onDelete)="deleteBills($event)"></app-common-table>
+    </div>
+  </div>
+</div>
+<app-toaster></app-toaster>
+

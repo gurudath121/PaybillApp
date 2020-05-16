@@ -1,0 +1,32 @@
+.loading-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    /* background: rgba(256,256,256, 0.5); */
+    background: #ffffff0f;
+    z-index: 1080;
+}
+  
+.modal-loading-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(256,256,256, 0.5);
+    z-index: 1080;
+}
+  
+.loading {
+    position: absolute;
+    top: calc(50% - 24px);
+    left: calc(50% - 24px);
+    z-index: 1081;
+    color: #666666;
+}
+
+.loading i {
+    color:#19659D;
+}

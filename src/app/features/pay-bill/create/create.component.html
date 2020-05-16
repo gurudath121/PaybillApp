@@ -1,0 +1,85 @@
+<!-- <app-spinner></app-spinner> -->
+<app-spinner [loader]="loading"></app-spinner>
+<div class="c_container">
+  <div class="sqab_bl_style">
+    <div class="sqab_hText">Create Paybill</div>
+    <span class="sqab_tColor fs-12">Dashboard</span>
+    <img alt="no image" class="bc-icon pl-4" style="height: 9px ; width: 9px;" src="assets/images/Breadcrumb Chevron.svg">
+    <span class="pl-4 sqab_tColor fs-12">Create Paybill</span>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <div class="sqab_card">
+        charts goes here
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="sqab_card">
+        <div class="sqab_bl_style sub_hStyle">
+          <div class="sqab_hText">Add Bill Details</div>
+          <br/>
+        </div>
+        <!-- <br/>
+        <br/>
+        <br/>
+        <br/> -->
+        <div class="form_wrap">
+          <div class="row">
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s6">
+                  <i class="material-icons prefix icon_clr">payment</i>
+                  <input id="bill_name" type="text" data-length="30" maxlength="30" name="billname" [(ngModel)]="bills.billname">
+                  <label for="bill_name" [ngClass]="{'active': isEdit}">Bill Name <span class="icon_clr madatory">*</span></label>
+                </div>
+                <div class="input-field col s6">
+                  <i class="material-icons prefix icon_clr">filter_1</i>
+                  <select [(ngModel)]="bills.selectedType" name="types" (change)="onChange($event)">
+                    <option value="" disabled selected>Choose bill type</option>
+                    <option *ngFor="let cc of ss.billType" [value]="cc.value" >{{cc.name}}</option>
+                  </select>
+                  <label>Bill Type <span class="icon_clr madatory">*</span></label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s6">
+                    <!-- <i class="far fa-calendar-alt" ></i> -->
+                    <i class="material-icons prefix icon_clr" *ngIf="true">date_range</i>
+                  <input type="text" class="datepicker" (change)="onDateChange($event)" *ngIf="!isEdit">
+                  <input type="text" disabled [ngModel]="dateHolder | date" (ngModelChange)="dateHolder=$event" name="date1" *ngIf="isEdit">
+                  <label for="datepicker" [ngClass]="{'active': isEdit}">Bill Date<span class="icon_clr madatory">*</span></label>
+                </div>
+                <div class="input-field col s6">
+                  <i class="material-icons prefix icon_clr">monetization_on</i>
+                  <input id="bill_amount" type="number" name="amount" [(ngModel)]="bills.billamount" (change)="onBillAmountChange($event)">
+                  <label for="bill_amount" [ngClass]="{'active': true}">Bill Amount<span class="icon_clr madatory">*</span></label>
+                </div>
+              </div>
+              <div class="row">
+                <form class="col s12">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <i class="material-icons prefix icon_clr">description</i>
+                      <textarea id="description" class="materialize-textarea" data-length="100" maxlength="100" name="desc" [(ngModel)]="bills.billdesc"></textarea>
+                      <label for="description" [ngClass]="{'active': isEdit}">Bill Description</label>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <span class="sqab-buttons">
+                <button class="btn waves-effect waves-light fr pbtn ml-10" type="submit" name="action" (click)="onSubmit()">Submit
+                  <!-- <i class="material-icons right">send</i> -->
+                </button>
+                <button class="btn waves-effect waves-light fr sbtn" type="submit" name="action" (click)="onCancel()">Cancel
+                  <!-- <i class="material-icons right">cancel</i> -->
+                </button>
+              </span>
+            </form>
+          </div>
+        </div>
+        <!-- check -->
+      </div>
+    </div>
+  </div>
+</div>
+<app-toaster></app-toaster>
